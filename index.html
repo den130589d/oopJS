@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.displayNone{
+			display: none;
+		}
+		.modal{
+			width: 200px;
+			height: 100px;
+			border: 1px solid black;
+		}
+
+	</style>
+</head>
+<body>
+
+	
+		
+	
+	<script>
+		function modal(textTitle, btnTextShow, btnTextHide, contentText){
+				var div;
+				var title;
+			    var createModal = function(){
+				    div = document.createElement('div');
+				    document.body.appendChild(div);
+				    title = document.createElement('p');
+				    div.appendChild(title);
+					btnShow = document.createElement('button');
+					div.appendChild(btnShow);
+					btnShow.innerHTML = btnTextShow;
+					var btnHide = document.createElement('button');
+
+					div.appendChild(btnHide);
+					btnHide.classList.toggle('displayNone');
+					btnHide.innerHTML = btnTextHide;
+					title.innerHTML = textTitle;
+					div.classList.add('modal');
+				};
+				this.show = function(){
+
+					div.style.cssText = 'height: 300px';
+					this.classList.toggle('displayNone');
+					this.nextElementSibling.classList.toggle('displayNone');
+					var content = document.createElement('p');
+					div.insertBefore(content, this);
+					content.innerHTML = contentText;
+					
+				};
+
+				this.hide = function(){
+					this.classList.toggle('displayNone');
+					this.previousElementSibling.classList.toggle('displayNone');
+					div.style.cssText = 'height: 100px';
+					this.previousElementSibling.previousElementSibling.classList.toggle('displayNone');
+
+
+				}
+				this.init = function(){
+					createModal();
+					document.getElementsByTagName('button')[0].addEventListener('click', this.show);
+					
+					document.getElementsByTagName('button')[1].addEventListener('click', this.hide);	
+				
+
+				};
+				this.init();
+		}
+	</script>
+	<script>
+		var s = new modal(
+			'Title', 
+			'show', 
+			'hide', 
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat dolore, maiores magnam, omnis ab iste animi aperiam eius adipisci placeat alias repudiandae dolores voluptates, libero sint nemo veritatis asperiores. Quisquam?');
+	</script>
+</body>
+</html>

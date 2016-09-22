@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p></p>
+	<script>
+	var year = 2017;
+	var month = 5;
+	var day = 8;
+	var hours = 10;
+	var minutes = 30;
+	var d = new timer(year, month, day, hours, minutes);
+	
+
+	function timer(){
+		
+		var fun = function(){
+			var dateNow = new Date().getTime();
+			var overDate = new Date(year, month, day, hours, minutes).getTime();
+			var diff = overDate-dateNow;
+			var days1 = Math.floor(diff/1000/60/60/24);
+			var hours1 = Math.floor((diff - (days1*24*60*60*1000))/1000/60/60);
+			var minutes1 = Math.floor(((diff - (days1*24*60*60*1000))-hours1*1000*60*60)/1000/60);
+			var seconds1 = Math.floor((((diff - (days1*24*60*60*1000))-hours1*1000*60*60) - minutes1*1000*60)/1000);
+			var str = days1 + ' ' + 'Дней' + ' ' + hours1 + ' ' + 'Часов' + ' ' + minutes1 + ' ' +'Минут' + ' ' + seconds1 + ' ' + 'Секунд';
+			document.getElementsByTagName('p')[0].innerHTML = str;
+			setInterval(timer, 1000);
+			if(diff < 0){
+				clearInterval(timer);
+			};
+			};
+		  	this.init = function(){
+		  		fun(year, month, day, hours, minutes);
+		  	};
+		  	this.init();
+			
+				
+			
+
+	};
+
+	
+	</script>
+</body>
+</html>
